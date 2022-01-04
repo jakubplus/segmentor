@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<silences>
+    <silence from="PT3M43.306S" until="PT3M46.225S" />
+    <silence from="PT7M16.779S" until="PT7M18.512S" />
+    <silence from="PT10M57.769S" until="PT10M58.38S" />
+</silences>
