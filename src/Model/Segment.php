@@ -31,28 +31,28 @@ class Segment
     /**
      * @param string $title
      */
-    public function setTitle(string $title) {
+    public function setTitle(string $title): void {
         $this->title = $title;
     }
 
     /**
      * @return string
      */
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
     /**
      * @param float $offset
      */
-    public function setOffset(string $offset) {
+    public function setOffset(string $offset): void {
         $this->offset = $offset;
     }
 
     /**
      * @return string
      */
-    public function getOffset() {
+    public function getOffset(): string {
         return $this->offset;
     }
 }

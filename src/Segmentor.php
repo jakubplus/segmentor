@@ -41,7 +41,7 @@ class Segmentor
      * @return float
      * @throws Exception
      */
-    public function convertIso8601StringToSeconds(string $iso8601_string) {
+    public function convertIso8601StringToSeconds(string $iso8601_string): float {
         $t = [
             $iso8601_string,
         ];
@@ -67,7 +67,7 @@ class Segmentor
     /**
      * Loads XML file
      */
-    public function loadXmlFile(string $path) {
+    public function loadXmlFile(string $path): void {
         if (file_exists($path)) {
             $this->xml = simplexml_load_file($path);
         } else {
@@ -78,7 +78,7 @@ class Segmentor
     /**
      * @return string
      */
-    public function getXml() {
+    public function getXml(): string {
         return $this->xml;
     }
 
@@ -87,7 +87,7 @@ class Segmentor
      *
      * @throws Exception
      */
-    public function convertSilencesToSegments() {
+    public function convertSilencesToSegments(): void {
         $this->segments['segments'][] = new Segment('Chapter 1, part 1', 'PT0S');
         $ch = 1;
         $p = 2;
@@ -107,7 +107,7 @@ class Segmentor
     /**
      * @return array
      */
-    public function getSegments() {
+    public function getSegments(): array {
         return $this->segments;
     }
 
@@ -116,7 +116,7 @@ class Segmentor
      *
      * @return false|string
      */
-    public function getJsonSegments() {
+    public function getJsonSegments(): string {
         return json_encode($this->segments);
     }
 
