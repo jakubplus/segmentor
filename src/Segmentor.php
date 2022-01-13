@@ -86,6 +86,7 @@ class Segmentor
      * Converts silences from file to practical sound segments
      *
      * @throws Exception
+     * @return void
      */
     public function convertSilencesToSegments(): void {
         $this->segments['segments'][] = new Segment('Chapter 1, part 1', 'PT0S');
