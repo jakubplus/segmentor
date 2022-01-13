@@ -3,6 +3,7 @@
 namespace App\View\Type;
 
 use App\View\View;
+use \Exception;
 
 class JsonView extends View {
 
@@ -11,13 +12,13 @@ class JsonView extends View {
      * @param array $data
      * @throws \Exception
      */
-    public function display($template = 'standard', array $data): void {
+    public function display($template = 'standard', array $data = []): void {
         $templatePath = ROOT.TEMPLATE_DIR;
         if(file_exists($templatePath.$template.'.php')) {
             require_once $templatePath.$template.'.php';
         }
         else {
-            throw new \Exception("Template file $template not found.");
+            throw new Exception("Template file $template not found.");
         }
     }
 
@@ -27,11 +28,12 @@ class JsonView extends View {
     public function toString(array $data): void {
         try {
             $response = json_encode($data);
+            echo $response;
         }
         catch(Exception $e) {
             echo $e->getMessage();
         }
-        echo $response;
+
     }
 
 }

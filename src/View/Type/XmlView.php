@@ -4,6 +4,7 @@ namespace App\View\Type;
 
 use App\View\View;
 use \SimpleXMLElement;
+use \Exception;
 
 class XmlView extends View {
 
@@ -44,9 +45,9 @@ class XmlView extends View {
     /**
      * @param string $template
      * @param array $data
-     * @throws \Exception
+     * @throws Exception
      */
-    public function display($template = 'standard', array $data): void {
+    public function display($template = 'standard', array $data = []): void {
         $this->arrayToXml($data['segments']);
         $data = $this->xml_data;
 
@@ -55,7 +56,7 @@ class XmlView extends View {
             require_once $templatePath.$template.'.php';
         }
         else {
-            throw new \Exception("Template file $template not found.");
+            throw new Exception("Template file $template not found.");
         }
     }
 
@@ -64,13 +65,12 @@ class XmlView extends View {
      */
     public function toString(array $data): void {
         try {
-            $xml_data = new SimpleXMLElement('<?xml version="1.0"?><data></data>');
-            $response = $this->arrayToXml($data['segments'], $xml_data);
+            $this->arrayToXml($data['segments']);
+            echo $this->xml_data;
         }
         catch(Exception $e) {
             echo $e->getMessage();
         }
-        echo $response;
     }
 
 }

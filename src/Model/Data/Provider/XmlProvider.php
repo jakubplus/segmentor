@@ -4,6 +4,7 @@ namespace App\Model\Data\Provider;
 
 use App\Model\Data\DataProvider;
 use SimpleXMLElement;
+use \Exception;
 
 class XmlProvider extends DataProvider {
 
@@ -12,10 +13,15 @@ class XmlProvider extends DataProvider {
     /**
      * JsonProvider constructor.
      * @param string $path
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(string $path) {
-        $this->loadFile($path);
+        try {
+            $this->loadFile($path);
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
@@ -26,7 +32,7 @@ class XmlProvider extends DataProvider {
         if (file_exists($path)) {
             $this->file = simplexml_load_file($path);
         } else {
-            throw new \Exception("File $path not found.");
+            throw new Exception("File $path not found.");
         }
     }
 

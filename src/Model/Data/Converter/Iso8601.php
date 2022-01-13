@@ -4,6 +4,7 @@ namespace App\Model\Data\Converter;
 
 use App\Model\Data\DataConverter;
 use DateInterval;
+use \Exception;
 
 class Iso8601 implements DataConverter {
 
@@ -18,15 +19,22 @@ class Iso8601 implements DataConverter {
                 substr($iso8601_string, $dotpos + 1, -1),
             ];
         }
-        $inv = new DateInterval($t[0]);
-        if (!$inv->i) {
-            $inv->i = 0;
+        $s = 0;
+        $f = 0;
+        try {
+            $inv = new DateInterval($t[0]);
+            if (!$inv->i) {
+                $inv->i = 0;
+            }
+            $s = ($inv->s) + ($inv->i * 60) + ($inv->h * 60 * 60);
+            if (count($t) === 1) {
+                return (float)$s;
+            }
+            $f = strlen($t[1]) < 3 ? strlen($t[1]) < 2 ? '00' . $t[1] : '0' . $t[1] : $t[1];
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
-        $s = ($inv->s) + ($inv->i * 60) + ($inv->h * 60 * 60);
-        if (count($t) === 1) {
-            return (float)$s;
-        }
-        $f = strlen($t[1]) < 3 ? strlen($t[1]) < 2 ? '00' . $t[1] : '0' . $t[1] : $t[1];
         return (float)($s . '.' . $f);
     }
 }

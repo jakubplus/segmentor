@@ -18,17 +18,13 @@ class SegmentsRepository extends Repository {
      */
     public array $segments = [];
 
-    /**
-     * SegmentsRepository constructor.
-     * @param array $sourceData
-     */
     public function __construct(array $sourceData) {
         $this->sourceData = $sourceData;
     }
 
     /**
-     * @param array $data
      * @param array $options
+     * @return array
      */
     public function getResults(array $options = []): array {
         if(!$options['chapter_silence_duration']) {

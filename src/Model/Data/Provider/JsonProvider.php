@@ -3,29 +3,30 @@
 namespace App\Model\Data\Provider;
 
 use App\Model\Data\DataProvider;
+use \Exception;
 
 class JsonProvider extends DataProvider {
 
     private string|false $file;
 
-    /**
-     * JsonProvider constructor.
-     * @param string $path
-     * @throws \Exception
-     */
     public function __construct(string $path) {
-        $this->file = $this->loadFile($path);
+        try {
+            $this->loadFile($path);
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
      * @param string $path
-     * @throws \Exception
+     * @throws Exception
      */
     public function loadFile(string $path): void {
         if (file_exists($path)) {
             $this->file = file_get_contents($path);
         } else {
-            throw new \Exception("File $path not found.");
+            throw new Exception("File $path not found.");
         }
     }
 
