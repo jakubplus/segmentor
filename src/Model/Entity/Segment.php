@@ -10,17 +10,17 @@ class Segment extends Entity
     /**
      * @var int
      */
-    public int $chapterNo;
+    private int $chapterNo;
 
     /**
      * @var int
      */
-    public int $partNo;
+    private int $partNo;
 
     /**
      * @var string $offset
      */
-    public string $offset;
+    private string $offset;
 
     /**
      * Segment constructor.
