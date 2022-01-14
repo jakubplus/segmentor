@@ -64,12 +64,5 @@ class Segment extends Entity
         return $this->offset;
     }
 
-    /**
-     * @return string
-     */
-    public function getTitle(): string {
-        return sprintf('Chapter %s, part %s', $this->getChapterNo(), $this->getPartNo());
-    }
-
 
 }
