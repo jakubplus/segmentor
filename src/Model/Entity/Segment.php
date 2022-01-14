@@ -23,11 +23,6 @@ class Segment extends Entity
     public string $offset;
 
     /**
-     * @var string $title
-     */
-    public string $title;
-
-    /**
      * Segment constructor.
      * @param int $chapterNo
      * @param int $partNo
